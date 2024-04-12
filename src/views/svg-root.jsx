@@ -11,8 +11,7 @@ const SvgRoot = (props) => {
       return;
     }
 
-    // const url = `${window._env_.CODE_SNIPPETS_BACKEND}/card`;
-    const url = `http://localhost:3000/svg`;
+    const url = `${window._env_.CODE_SNIPPETS_BACKEND}/svg`;
     const options = {
       method: "GET",
       credentials: "include",
