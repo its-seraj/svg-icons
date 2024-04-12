@@ -1,0 +1,332 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--title-color);
+  background-color: var(--background);
+}
+
+
+.theme-toggle-button {
+  position: absolute;
+  top: 2.5em;
+  right: 2em;
+  cursor: pointer;
+}
+
+.action-menu {
+  width: 100%;
+}
+
+.action-menu .action {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-menu .action .new-card-btn,
+.action-menu .action .sort-by-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 10px;
+  padding-left: 5px;
+  margin: 1em 0;
+  cursor: pointer;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.action-menu .action svg {
+  height: 0.9em;
+  width: 0.9em;
+}
+
+/* login modal */
+.login-modal-root {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+/* cards */
+.svg-root {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+.svg-root .svg-item {
+  padding: 10px;
+  height: 140px;
+  width: 220px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: var(--card-background);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.svg-root .svg-item svg {
+  height: 52px;
+  width: 52px;
+  color: var(--title-color);
+  fill: var(--title-color);
+}
+
+.svg-item .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  /* line-height: 1.2; */
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.svg-item .resolution {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.6em;
+  opacity: 0.1;
+}
+
+.svg-item .copy-btn-root {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.svg-item .copy-btn {
+  height: 1em;
+  width: 1em;
+  opacity: 0.5;
+  cursor: pointer;
+  position: relative;
+}
+
+.svg-item .copy-btn svg {
+  height: 0.8em;
+  width: 0.8em;
+  display: none;
+}
+
+.svg-item .copy-btn .done-icon {
+  position: absolute;
+  top: 70%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  height: 0.4em;
+  width: 0.4em;
+}
+
+.done-icon.show {
+  transform: scale(0);
+  animation: show-icon 1s ease-in-out forwards;
+}
+
+.svg-item .edit-btn{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  opacity: 0.2;
+  cursor: pointer;
+}
+.svg-item .edit-btn svg{
+  height: 0.5em;
+  width: 0.5em;
+}
+
+@keyframes pop-up-icon {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+/* code-editor */
+.run-code-icon {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 5px 14px;
+  border-radius: 8px;
+  /* background-color: var(--background); */
+  z-index: 10;
+}
+
+.ace_editor-root {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ace_editor:not(.ace_autocomplete) {
+  width: 100% !important;
+  border-block: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-radius: 4px;
+}
+
+.ace_editor.ace_autocomplete {
+  margin-top: 10px;
+}
+
+iframe .decorationsOverviewRuler {
+  width: 4px !important;
+}
+
+/* card form */
+.form-root {
+  margin: 2em;
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.form-root .form-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-height: 480px;
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  margin-right: 100px;
+  width: 1px;
+  background-color: transparent;
+  display: block;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+}
+
+.save-card-btn {
+  /* margin-top: 1em; */
+  /* margin-left: auto; */
+  padding: 0.6em 0.8em;
+  font-weight: 600;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--title-color);
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 14px var(--box-shadow);
+}
+
+.save-card-btn:hover {
+  background-color: var(--btn-hover);
+}
+
+.save-card-btn:disabled {
+  cursor: not-allowed;
+  color: var(--skeleton-background);
+}
+
+.text-btn-root {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+}
+
+.text-btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--title-color);
+  background-color: var(--background);
+}
+
+.text-btn-root:hover {
+  opacity: 1;
+}
+
+.error-message {
+  margin: 0;
+  margin-right: auto;
+  height: 0.9em;
+  color: rgba(253, 59, 59, 0.829);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+/* add more */
+.add-more-root {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+}
+
+.add-more-root .btn {
+  padding: 0.4em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.8em;
+  color: var(--title-color);
+  border-radius: 4px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.add-more-root .btn:hover {
+  opacity: 0.8;
+  background-color: var(--btn-hover);
+}
+
+.form-ace-editor {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-ace-editor>div {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ace_editor .ace_autocomplete {
+  /* margin: 10px; */
+  left: auto;
+}
+
+.form-ace-editor .ace_editor {
+  /* height: max-content; */
+}
