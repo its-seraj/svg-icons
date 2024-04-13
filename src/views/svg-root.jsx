@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import SvgItem from "./svg-item";
 import BasicModal from "./modal";
 import { SVGSkeleton } from "./skeleton";
@@ -10,7 +9,6 @@ const SvgRoot = (props) => {
   const [counts, setCounts] = useState();
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [showScrollButton, setShowScrollButton] = useState(false);
 
   const fetchSVGs = async (isRefresh = false) => {
     setLoading(true);
@@ -78,21 +76,6 @@ const SvgRoot = (props) => {
 
   useEffect(() => {
     fetchCounts();
-
-    /* scroll to top */
-    const handleScroll = () => {
-      if (window.scrollY > window.innerHeight * 2) {
-        setShowScrollButton(true);
-      } else {
-        setShowScrollButton(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
   useEffect(() => {
     fetchSVGs();
@@ -120,13 +103,6 @@ const SvgRoot = (props) => {
     };
   }, [svgList, loading]);
 
-  const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <>
       <div className="total-count">{counts}</div>
@@ -134,11 +110,6 @@ const SvgRoot = (props) => {
         {svgList.length > 0 ? svgList.map((svgObj, index) => <SvgItem key={index} data={svgObj} refresh={fetchSVGs} />) : <SVGSkeleton />}
         {loading && <SVGSkeleton />}
       </div>
-      {showScrollButton && (
-        <div className="scroll-to-top" onClick={handleScrollToTop}>
-          <KeyboardArrowUpIcon />
-        </div>
-      )}
       {modalOpenRoot && <BasicModal modalOpen={modalOpenRoot} setModalOpen={setModalOpenRoot} modalAction="new" refresh={fetchSVGs} />}
     </>
   );

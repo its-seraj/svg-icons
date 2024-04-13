@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "./ThemeProvider";
 import { GlobalStyles } from "./GlobalStyles";
 import Menu from "./views/menu/menu";
@@ -7,15 +7,41 @@ import { Divider } from "@mui/material";
 import ContrastIcon from "@mui/icons-material/Contrast";
 import AddIcon from "@mui/icons-material/Add";
 import PowerMenu from "./views/menu/powerMenu";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 function App() {
   const { theme, toggleTheme } = useTheme();
   const [modalOpenRoot, setModalOpenRoot] = useState(false);
+  const [showScrollButton, setShowScrollButton] = useState(false);
 
   const isAccessible = localStorage.getItem("resource");
 
   const newCardHandler = () => {
     setModalOpenRoot(true);
+  };
+
+  useEffect(() => {
+    /* scroll to top */
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight * 2) {
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -47,6 +73,11 @@ function App() {
         </div>
       )}
       <SvgRoot modalOpenRoot={modalOpenRoot} setModalOpenRoot={setModalOpenRoot} />
+      {showScrollButton && (
+        <div className="scroll-to-top" onClick={handleScrollToTop}>
+          <KeyboardArrowUpIcon />
+        </div>
+      )}
     </>
   );
 }

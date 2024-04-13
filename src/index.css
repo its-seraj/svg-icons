@@ -64,7 +64,7 @@ body {
 
 .scroll-to-top {
   position: sticky;
-  margin: auto 1em auto auto;
+  margin: auto 0 auto auto;
   bottom: 1em;
   padding: 1em;
   display: flex;
@@ -118,8 +118,12 @@ body {
 .svg-root .svg-item svg {
   height: 52px;
   width: 52px;
-  color: var(--title-color);
-  fill: var(--title-color);
+  color: var(--title-color) !important;
+  fill: var(--title-color) !important;
+}
+
+.svg-root .svg-item svg path {
+  fill: var(--title-color) !important;
 }
 
 .svg-item .title {
