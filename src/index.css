@@ -53,6 +53,21 @@ body {
   width: 0.9em;
 }
 
+.total-count {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  font-size: 0.8em;
+  letter-spacing: 2px;
+  opacity: 0.5;
+}
+
+.scroll-to-top {
+  position: sticky;
+  bottom: 1em;
+  right: 1em;
+}
+
 /* login modal */
 .login-modal-root {
   padding: 1em;
@@ -67,6 +82,7 @@ body {
 
 /* cards */
 .svg-root {
+  margin-bottom: 1em;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -98,6 +114,7 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
   -webkit-line-clamp: 1;
+  max-width: 100%;
   /* line-height: 1.2; */
   font-weight: 400;
   font-size: 12px;
@@ -145,14 +162,15 @@ body {
   animation: show-icon 1s ease-in-out forwards;
 }
 
-.svg-item .edit-btn{
+.svg-item .edit-btn {
   position: absolute;
   top: 5px;
   right: 10px;
   opacity: 0.2;
   cursor: pointer;
 }
-.svg-item .edit-btn svg{
+
+.svg-item .edit-btn svg {
   height: 0.5em;
   width: 0.5em;
 }

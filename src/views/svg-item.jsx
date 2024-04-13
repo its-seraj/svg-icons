@@ -61,8 +61,10 @@ const SvgItem = (props) => {
   useEffect(() => {
     if (data) {
       const viewbox = getViewBoxFromSVG(data.svg);
-      const { height, width } = getHeightWidthFromViewBox(viewbox);
-      setResolution({ width, height });
+      if(viewbox !== null){
+        const { height, width } = getHeightWidthFromViewBox(viewbox);
+        setResolution({ width, height });
+      }
     }
   }, []);
 
@@ -76,7 +78,7 @@ const SvgItem = (props) => {
         )}
         {data?.svg && <div ref={svgRef} dangerouslySetInnerHTML={{ __html: data.svg }} />}
         <div className="title">{data.title}</div>
-        {resolution && <div className="resolution">{`${resolution.width} x ${resolution.height}`}</div>}
+        {Object.keys(resolution).length > 0 && <div className="resolution">{`${resolution.width} x ${resolution.height}`}</div>}
         <div onClick={copyButtonHandler} className="copy-btn-root">
           <div className="copy-btn">
             <ContentPasteIcon />
