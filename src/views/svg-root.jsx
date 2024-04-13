@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import SvgItem from "./svg-item";
 import BasicModal from "./modal";
 import { SVGSkeleton } from "./skeleton";
@@ -135,7 +136,7 @@ const SvgRoot = (props) => {
       </div>
       {showScrollButton && (
         <div className="scroll-to-top" onClick={handleScrollToTop}>
-          scroll to top
+          <KeyboardArrowUpIcon />
         </div>
       )}
       {modalOpenRoot && <BasicModal modalOpen={modalOpenRoot} setModalOpen={setModalOpenRoot} modalAction="new" refresh={fetchSVGs} />}
