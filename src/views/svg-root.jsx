@@ -11,6 +11,9 @@ const SvgRoot = (props) => {
   const [loading, setLoading] = useState(false);
 
   const fetchSVGs = async (isRefresh = false) => {
+    if (counts >= svgList?.lenght) {
+      return;
+    }
     setLoading(true);
     // if (svgList?.length > 0 && !isRefresh) {
     //   return;
@@ -26,7 +29,7 @@ const SvgRoot = (props) => {
     };
 
     if (search.trim()) {
-      url += `?search=${search.trim()}`;
+      url += `&search=${search.trim()}`;
     }
 
     await fetch(url, options)
@@ -36,7 +39,11 @@ const SvgRoot = (props) => {
       .then((data) => {
         if (data.success === true) {
           setLoading(false);
-          setSvgList((prev) => [...prev, ...data.data]);
+          if (offset === 0) {
+            setSvgList(data.data);
+          } else {
+            setSvgList((prev) => [...prev, ...data.data]);
+          }
         }
       })
       .catch((error) => {
@@ -45,11 +52,11 @@ const SvgRoot = (props) => {
     setLoading(false);
   };
   const fetchCounts = async () => {
-    if (counts && counts > 0) {
-      return;
-    }
+    // if (counts && counts > 0) {
+    //   return;
+    // }
 
-    const url = `${window._env_.CODE_SNIPPETS_BACKEND}/svg/counts`;
+    let url = `${window._env_.CODE_SNIPPETS_BACKEND}/svg/counts`;
     const options = {
       method: "GET",
       credentials: "include",
@@ -57,6 +64,10 @@ const SvgRoot = (props) => {
         "Content-Type": "application/json",
       },
     };
+
+    if (search.trim()) {
+      url += `?search=${search.trim()}`;
+    }
 
     await fetch(url, options)
       .then((response) => {
@@ -83,9 +94,10 @@ const SvgRoot = (props) => {
   }, []);
   useEffect(() => {
     fetchSVGs();
-  }, [offset]);
+  }, [offset, search]);
   useEffect(() => {
     setOffset(0);
+    fetchCounts();
   }, [search]);
 
   useEffect(() => {
