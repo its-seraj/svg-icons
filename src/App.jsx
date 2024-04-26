@@ -13,6 +13,7 @@ function App() {
   const { theme, toggleTheme } = useTheme();
   const [modalOpenRoot, setModalOpenRoot] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [search, setSearch] = useState("");
 
   const isAccessible = localStorage.getItem("resource");
 
@@ -59,7 +60,7 @@ function App() {
         )}
       </div>
       <PowerMenu />
-      <Menu />
+      <Menu search={search} setSearch={setSearch} />
       {isAccessible === "admin" && (
         <div className="action-menu">
           <Divider className="root-divider" />
@@ -72,7 +73,7 @@ function App() {
           </div>
         </div>
       )}
-      <SvgRoot modalOpenRoot={modalOpenRoot} setModalOpenRoot={setModalOpenRoot} />
+      <SvgRoot modalOpenRoot={modalOpenRoot} setModalOpenRoot={setModalOpenRoot} search={search} setSearch={setSearch} />
       {showScrollButton && (
         <div className="scroll-to-top" onClick={handleScrollToTop}>
           <KeyboardArrowUpIcon />

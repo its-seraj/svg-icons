@@ -4,7 +4,7 @@ import BasicModal from "./modal";
 import { SVGSkeleton } from "./skeleton";
 
 const SvgRoot = (props) => {
-  const { modalOpenRoot, setModalOpenRoot } = props;
+  const { modalOpenRoot, setModalOpenRoot, search, setSearch } = props;
   const [svgList, setSvgList] = useState([]);
   const [counts, setCounts] = useState();
   const [offset, setOffset] = useState(0);
@@ -16,7 +16,7 @@ const SvgRoot = (props) => {
     //   return;
     // }
 
-    const url = `${window._env_.CODE_SNIPPETS_BACKEND}/svg?offset=${offset}`;
+    let url = `${window._env_.CODE_SNIPPETS_BACKEND}/svg?offset=${offset}`;
     const options = {
       method: "GET",
       credentials: "include",
@@ -24,6 +24,10 @@ const SvgRoot = (props) => {
         "Content-Type": "application/json",
       },
     };
+
+    if (search.trim()) {
+      url += `?search=${search.trim()}`;
+    }
 
     await fetch(url, options)
       .then((response) => {
@@ -80,6 +84,9 @@ const SvgRoot = (props) => {
   useEffect(() => {
     fetchSVGs();
   }, [offset]);
+  useEffect(() => {
+    setOffset(0);
+  }, [search]);
 
   useEffect(() => {
     // Create an IntersectionObserver
