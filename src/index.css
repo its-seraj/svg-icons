@@ -118,12 +118,12 @@ body {
 .svg-root .svg-item svg {
   height: 52px;
   width: 52px;
-  color: var(--title-color) !important;
-  fill: var(--title-color) !important;
+  /* color: var(--title-color) !important;
+  fill: var(--title-color) !important; */
 }
 
 .svg-root .svg-item svg path {
-  fill: var(--title-color) !important;
+  /* fill: var(--title-color) !important; */
 }
 
 .svg-item .title {
