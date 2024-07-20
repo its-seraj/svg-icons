@@ -5,7 +5,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import SettingsApplicationsRoundedIcon from "@mui/icons-material/SettingsApplicationsRounded";
-import { PasscodeInput } from "./passcodeInput";
+import { PasscodeInput } from "passcode-input";
 
 export default function PowerMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);

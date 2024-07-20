@@ -141,7 +141,7 @@ export const GlobalStyles = (
       },
       ".login-modal-root": {
         ".MuiTextField-root": {
-          width: "200px !important",
+          width: "260px !important",
           "& .MuiOutlinedInput-root": {
             display: "flex",
             alignItems: "flex-start",
@@ -165,7 +165,7 @@ export const GlobalStyles = (
           },
           "& fieldset": {
             padding: "0",
-            width: "200px !important",
+            width: "260px !important",
             height: "40px",
             border: "1px solid var(--border) !important",
             "&:hover, &:active, &:focus": {
