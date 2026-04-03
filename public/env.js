@@ -1,3 +1,3 @@
 window._env_ = {
-  CODE_SNIPPETS_BACKEND: "https://code-snippets-backend.onrender.com"
+  CODE_SNIPPETS_BACKEND: "https://api.seraj.live"
 }
